@@ -19,8 +19,8 @@ public class Juego extends javax.swing.JFrame {
      */
     public void iniciarJuego(){
          // Inserta código aquí...
-         clearButtons();
-         j.iniciarPartida(matriz, jPanel4);
+         clearButtons(); // Se borra las X y las O del tablero
+         j.iniciarPartida(matriz, jPanel4); // Crea una nueva partida. Limpia la matriz y habilita el tablero
     }
 
     @SuppressWarnings("unchecked")

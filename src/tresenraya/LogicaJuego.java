@@ -56,8 +56,8 @@ public class LogicaJuego {
      */
     public void cambioTurno(){
         // Inserta código aquí...
-        if (turno == 1){turno = 0;}
-        else {turno = 1;}
+        if (turno == 1){turno = 0;} // Si es el turno 1 lo pasa al 0
+        else {turno = 1;}           // Si es el turno 0 lo pasa al 1
         
     }
     
@@ -75,46 +75,46 @@ public class LogicaJuego {
         // Comprobar si existe tres en raya
         // Comprobar horizontal
         for(int x = 0; x < 3; x++){
-            jugador0 = 0;
-            jugador1 = 0;
+            jugador0 = 0; // Se reinicia el contador cada vez que se pasa a la siguiente fila
+            jugador1 = 0; 
             for(int y = 0; y < 3; y++){
                 if(matriz[x][y] == 0){jugador0++;}
                 if(matriz[x][y] == 1){jugador1++;}
             }
-                if(jugador0 == 3){break;}
+                if(jugador0 == 3){break;} // Se sale del bucle al haber 3 en raya
                 if(jugador1 == 3){break;}
         }
         if(jugador0 == 3){return 0;}
         if(jugador1 == 3){return 1;}
-        jugador0 = 0;
+        jugador0 = 0; //Se reinician los contadores
         jugador1 = 0;
         
         //Comprobar vertical
         for(int y = 0; y < 3; y++){
-            jugador0 = 0;
+            jugador0 = 0; // Se reinicia el contador cada vez que se pasa a la siguiente columna
             jugador1 = 0;
             for(int x = 0; x < 3; x++){
                 if(matriz[x][y] == 0){jugador0++;}
                 if(matriz[x][y] == 1){jugador1++;}
             }
-                if(jugador0 == 3){break;}
+                if(jugador0 == 3){break;} // Se sale del bucle al haber 3 en raya
                 if(jugador1 == 3){break;}
         }
         if(jugador0 == 3){return 0;}
         if(jugador1 == 3){return 1;}
-        jugador0 = 0;
+        jugador0 = 0; //Se reinician los contadores
         jugador1 = 0;
         
         //Comprobar en diagonal
-        if(matriz[0][0] == 0 && matriz[1][1] == 0 && matriz[2][2] == 0){jugador0 = 3;}
+        if(matriz[0][0] == 0 && matriz[1][1] == 0 && matriz[2][2] == 0){jugador0 = 3;} // Primera diagonal
         if(matriz[0][0] == 1 && matriz[1][1] == 1 && matriz[2][2] == 1){jugador1 = 3;}
-        if(matriz[2][0] == 0 && matriz[1][1] == 0 && matriz[0][2] == 0){jugador0 = 3;}
+        if(matriz[2][0] == 0 && matriz[1][1] == 0 && matriz[0][2] == 0){jugador0 = 3;} // Segunda diagonal
         if(matriz[2][0] == 1 && matriz[1][1] == 1 && matriz[0][2] == 1){jugador1 = 3;} 
         if(jugador0 == 3){return 0;}
         if(jugador1 == 3){return 1;}
         
         // Si no hay tres en raya
-        return 3;
+        return 3; // Devuelve un int que no sea 0 o 1
     }
     
     /**
@@ -136,19 +136,18 @@ public class LogicaJuego {
         ponerFicha(matriz, x, y, bt);       
         // Comprobar si se ha ganado la partida
         if (comprobarJuego(matriz)== 0){
-            pX++;
+            pX++; // Aumenta la puntuación para el jugador 0
             habilitado = false;
-            habilitarTablero(jp);
-            ganador(lX, lO);
+            habilitarTablero(jp); // Deshabilita el tablero
+            ganador(lX, lO);     // Dibuja la puntuación
         }
         if (comprobarJuego(matriz)== 1){
-            pO++;
+            pO++; // Aumenta la puntuación para el jugador 1
             habilitado = false;
-            habilitarTablero(jp);
-            ganador(lX, lO);
+            habilitarTablero(jp); // Deshabilita el tablero
+            ganador(lX, lO);     // Dibuja la puntuación
         } 
         else {cambioTurno();}
-         // Deshabilitar tablero
          return 0;
     }
     
@@ -174,11 +173,8 @@ public class LogicaJuego {
     public void habilitarTablero( javax.swing.JPanel jp){
         // Inserta código aquí...
         // Bloquea todos los elementos del JPanel
-        //jp.setEnabled(habilitado);
-        //jp.setVisible(habilitado); // setEnabled no impide usar los botones
-        
-         Component[] componentes = jp.getComponents();
-         for(Component c : componentes){c.setEnabled(habilitado);}
+        Component[] componentes = jp.getComponents(); // Se recogen los botones del JPanel en un array
+        for(Component c : componentes){c.setEnabled(habilitado);} // Se recorre el array y se deshabilitan los botones
     }
     
     /**
